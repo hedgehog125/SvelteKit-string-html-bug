@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="description" content="A demo of a bug involving HTML in strings in SvelteKit"/>
+
+		<title>SvelteKit string html bug</title>
+
+		<meta http-equiv="content-security-policy" content="">
+	<link rel="modulepreload" href="/build/app/immutable/start-4f869236.js">
+	<link rel="modulepreload" href="/build/app/immutable/chunks/index-750bfb3e.js">
+	<link rel="modulepreload" href="/build/app/immutable/layout.svelte-d7ff784e.js">
+	<link rel="modulepreload" href="/build/app/immutable/pages/foo.svelte-891f9054.js">
+	</head>
+	<body>
+		<div>
+
+
+<main>Nothing interesting here, just a valid webpage.
+</main>
+
+
+		<script type="module" data-sveltekit-hydrate="7m0gyt">
+		import { start } from "/build/app/immutable/start-4f869236.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="7m0gyt"]').parentNode,
+			paths: {"base":"/build","assets":"/build"},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [0, 2],
+				params: {},
+				routeId: "foo"
+			}
+		});
+	</script></div>
+	</body>
+	<style>
+		* {
+			font-family: sans-serif;
+		}
+		button {
+			cursor: pointer;
+		}
+	</style>
+</html>

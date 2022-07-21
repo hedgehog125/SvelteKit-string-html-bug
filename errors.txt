@@ -1,0 +1,22 @@
+I originally tested this with html-minify configured, but removed it to simplify things a bit more. However, marginally different errors were produced which is somewhat noteworthy:
+
+[vite-plugin-svelte-kit] 404 /{linkPage(&quot;foo&quot;)} does not begin with `base`, which is configured in `paths.base` and can be imported from `$app/paths` (linked from /build)
+error during build:
+Error: 404 /{linkPage(&quot;foo&quot;)} does not begin with `base`, which is configured in `paths.base` and can be imported from `$app/paths` (linked from /build)
+    at file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:1144:11
+    at visit (file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:1290:4)
+    at Object.fn (file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:1280:22)
+    at dequeue (file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:800:42)
+    at file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:809:7
+
+
+Otherwise a slightly different error appears for some reason:
+
+[vite-plugin-svelte-kit] 404 /{linkPage("foo")} does not begin with `base`, which is configured in `paths.base` and can be imported from `$app/paths` (linked from /build)
+error during build:
+Error: 404 /{linkPage("foo")} does not begin with `base`, which is configured in `paths.base` and can be imported from `$app/paths` (linked from /build)
+    at file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:1144:11
+    at visit (file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:1290:4)
+    at Object.fn (file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:1280:22)
+    at dequeue (file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:800:42)
+    at file:///Users/nico/Documents/JS/SvelteKit-string-html-bug/static/node_modules/@sveltejs/kit/dist/vite.js:809:7

@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8"/>
+
+		<meta name="viewport" content="width=device-width, initial-scale=1"/>
+		<meta name="description" content="A demo of a bug involving HTML in strings in SvelteKit"/>
+
+		<title>SvelteKit string html bug</title>
+
+		<meta http-equiv="content-security-policy" content="">
+	<link rel="modulepreload" href="/build/app/immutable/start-4f869236.js">
+	<link rel="modulepreload" href="/build/app/immutable/chunks/index-750bfb3e.js">
+	<link rel="modulepreload" href="/build/app/immutable/layout.svelte-d7ff784e.js">
+	<link rel="modulepreload" href="/build/app/immutable/pages/index.svelte-a3bb1daf.js">
+	</head>
+	<body>
+		<div>
+
+
+<main><p>Here are a bunch of variations of escaped HTML anchor tags, in both paragraphs (where tag escaping is needed) and in textareas (where it isn&#39;t).
+	</p>
+	<p>When treated as literal html, the JavaScript will make the link start with the base path. But when it&#39;s being validatated, the code is often treated as the link itself, causing it to be invalid.
+	</p>
+	<p>Here&#39;s an annoying way to escape it which actually works. So you can see the code: &lt;a href={linkPage("foo")}&gt;This works&lt;/a&gt; <br>
+		This page exists, which prevents some of the errors. That bit of code is just displayed in a p tag, using HTML escape codes for the greater than and less than symbols.
+	</p> <br>
+	<p>None of HTML in the JavaScript strings in the JavaScript files result in parsing errors. And escaping by using concatination to break up things like &lt;a&gt; doesn&#39;t make a difference.
+	</p> <br>
+
+	<h1>The tests</h1>
+
+	<p>*HTML commented* textarea with the content (that raw HTML code) from an external script (most likely to compile, but won&#39;t show anything), using Svelte curly brackets in the (commented) HTML:
+	</p>
+	
+	<p>Compiles
+	</p> <br>
+
+	<p>Textarea with the content (that raw HTML code) from an external script, using Svelte curly brackets in the HTML:
+	</p>
+	
+	<p>*Doesn&#39;t* compile
+	</p> <br>
+
+	<p>It&#39;s invalid syntax to run the same code but with a @html prefix on textboxes.hardCoded.
+	</p>
+	<p>The same but the whole thing in a string but using @html (using vanilla string template): <br>
+		The contents is commented out by removing the dollar sign as I can&#39;t use an HTML comment.
+	</p>
+	<!-- HTML_TAG_START -->
+		<textarea readonly cols="80" rows="2">{textboxes.demo}</textarea> <br>
+	<!-- HTML_TAG_END -->
+	<p>*Doesn&#39;t* compile (unless the contents is removed like this)
+	</p> <br>
+
+	<p>Same but the URL in the escaped string uses a hardcoded prefix (meaning it would be valid even without JavaScript if it wasn&#39;t in a textarea). Still loaded from an external script and put into this document with Svelte curly brackets:
+	</p>
+	
+	<p>*Doesn&#39;t* compile, even when the page exists
+	</p> <br>
+
+	<p>The same escaped HTML code but put *unescaped* into the HTML document:
+	</p>
+	<a href="/build/foo">This works</a> <br>
+	<p>Compiles if the page exists (expected)
+	</p> <br>
+	
+	<br>
+
+	<p>Textarea with the content loaded using the value property (instead of inbetween the tags), from an external script, using Svelte curly brackets in the HTML:
+	</p>
+	
+	<p>*Doesn&#39;t* compile, even with quotes around the value property
+	</p> <br>
+
+	<p>Same thing but using a non-existent element but the commonly used &quot;value&quot; property:
+	</p>
+	<foo value="<a href={linkPage(&quot;foo&quot;)}>This works</a>"></foo>
+	<p>Compiles
+	</p> <br>
+
+	<p>Same thing but using a non-existent element and property:
+	</p>
+	<foo bar="<a href={linkPage(&quot;foo&quot;)}>This works</a>"></foo>
+	<p>Compiles
+	</p> <br>
+
+	<br>
+
+	<p>HTML string put as an inline string in the HTML, using the {`&lt;content...>`} method:
+	</p>
+	
+	<p>*Doesn&#39;t* compile
+	</p> <br>
+
+	<p>HTML string put directly in the document as the *inner content* of the tag:
+	</p>
+	
+	<p>*Doesn&#39;t* compile, results in parse error
+	</p> <br>
+
+	<p>HTML string put directly in the document as the *value property* of the tag:
+	</p>
+	
+	<p>*Doesn&#39;t* compile
+	</p> <br></main>
+
+
+		<script type="module" data-sveltekit-hydrate="zuovbk">
+		import { start } from "/build/app/immutable/start-4f869236.js";
+		start({
+			target: document.querySelector('[data-sveltekit-hydrate="zuovbk"]').parentNode,
+			paths: {"base":"/build","assets":"/build"},
+			session: {},
+			route: true,
+			spa: false,
+			trailing_slash: "never",
+			hydrate: {
+				status: 200,
+				error: null,
+				nodes: [0, 3],
+				params: {},
+				routeId: ""
+			}
+		});
+	</script></div>
+	</body>
+	<style>
+		* {
+			font-family: sans-serif;
+		}
+		button {
+			cursor: pointer;
+		}
+	</style>
+</html>

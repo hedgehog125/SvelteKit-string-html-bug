@@ -1,0 +1,5 @@
+=== Code ===
+== Packages and tools ==
+= Frontend build server =
+Sveltekit (https://kit.svelte.dev/)
+html-minifier (https://www.npmjs.com/package/html-minifier)
